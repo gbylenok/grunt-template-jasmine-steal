@@ -38,12 +38,10 @@
     .then("<%= fn.pathify(script) %>")
   <% }) %>
   <% }; %>
-
-
-	<% scripts.specs.forEach(function(script, i){ %>
+	<% scripts.reporters.forEach(function(script, i){ %>
 		.then("<%= fn.pathify(script) %>")
 	<% }) %>
-	<% scripts.reporters.forEach(function(script, i){ %>
+	<% scripts.specs.forEach(function(script, i){ %>
 		.then("<%= fn.pathify(script) %>")
 	<% }) %>
 	<% scripts.start.forEach(function(script, i){ %>
