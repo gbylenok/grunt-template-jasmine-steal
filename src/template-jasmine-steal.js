@@ -1,10 +1,7 @@
 
 "use strict";
 
-var template = __dirname + '/templates/jasmine-steal.html',
-    steal  = {
-      '3.2.3' : __dirname + '/../vendor/steal-3.2.3'
-    };
+var template = __dirname + '/templates/jasmine-steal.html';
 
 exports.process = function(grunt, task, context) {
   context.options.stealOptions = context.options.stealOptions || {};
@@ -13,7 +10,7 @@ exports.process = function(grunt, task, context) {
 
   // find the latest version if none given
   if (!stealUrl) {
-    stealUrl = '.grunt/grunt-contrib-jasmine/steal/steal.js';
+    stealUrl = _dirname + '/steal/steal.js';
   }
 
   var stealRoot = stealUrl.substring(0, stealUrl.indexOf('steal/steal.js'));
@@ -27,17 +24,13 @@ exports.process = function(grunt, task, context) {
           supportRel = /^\.grunt\//,
           absBase = '';
 
-      if(s.indexOf(stealRoot) === -1 && s.indexOf('.grunt') === -1) {
+      if(s.indexOf(stealRoot) === -1 && s.indexOf('node_modules') === -1) {
         absBase = '/';
       }
 
-      return absBase + s.replace(stealRel, '').replace(baseRel, '').replace(supportRel, '/.grunt/');
+      return absBase + s.replace(stealRel, '').replace(baseRel, '').replace(supportRel, '/node_modules/');
     }
   };
-
-  // put steal into place
-  task.copyTempFile(steal['3.2.3'] + '/steal.js','steal/steal.js');
-  task.copyTempFile(steal['3.2.3'] + '/dev/dev.js','steal/dev/dev.js');
 
   var source = grunt.file.read(template);
   return grunt.util._.template(source, context);
