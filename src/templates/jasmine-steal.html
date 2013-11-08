@@ -33,8 +33,7 @@
     </script>
   <% } %>
   <script>
-  steal
-
+  steal.then("stealconfig.js")
   <% with (scripts) { %>
   <% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
     .then("<%= fn.pathify(script) %>")
