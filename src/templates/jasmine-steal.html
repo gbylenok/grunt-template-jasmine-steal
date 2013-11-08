@@ -12,6 +12,13 @@
 
   <script src="<%= options.steal.url %>"></script>
 
+
+ <% css.forEach(function(style){ %>
+  <link rel="stylesheet" type="text/css" href="<%= style %>">
+  <% }) %>
+  
+</head>
+<body>
   <% if (options.steal.map) { %>
     <script>
       steal.map(<%= JSON.stringify(options.steal.map) %>);
@@ -25,30 +32,23 @@
       <% }) %>
     </script>
   <% } %>
-
- <% css.forEach(function(style){ %>
-  <link rel="stylesheet" type="text/css" href="<%= style %>">
-  <% }) %>
-  
   <script>
-	steal
+  steal
 
   <% with (scripts) { %>
   <% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
     .then("<%= fn.pathify(script) %>")
   <% }) %>
   <% }; %>
-	<% scripts.reporters.forEach(function(script, i){ %>
-		.then("<%= fn.pathify(script) %>")
-	<% }) %>
-	<% scripts.specs.forEach(function(script, i){ %>
-		.then("<%= fn.pathify(script) %>")
-	<% }) %>
-	<% scripts.start.forEach(function(script, i){ %>
-		.then("<%= fn.pathify(script) %>")
-	<% }) %>
+  <% scripts.reporters.forEach(function(script, i){ %>
+    .then("<%= fn.pathify(script) %>")
+  <% }) %>
+  <% scripts.specs.forEach(function(script, i){ %>
+    .then("<%= fn.pathify(script) %>")
+  <% }) %>
+  <% scripts.start.forEach(function(script, i){ %>
+    .then("<%= fn.pathify(script) %>")
+  <% }) %>
   </script>
-</head>
-<body>
 </body>
 </html>
