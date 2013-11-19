@@ -19,21 +19,25 @@
   
 </head>
 <body>
-  <% if (options.steal.map) { %>
-    <script>
-      steal.map(<%= JSON.stringify(options.steal.map) %>);
-    </script>
-  <% } %>
-
   <% if(options.steal.executed) { %>
-    <script>
+    <script type="text/javascript">
       <% options.steal.executed.forEach(function(script) { %>
         steal.executed("<%= script %>");
       <% }) %>
     </script>
   <% } %>
-  <script>
+  <script type="text/javascript">
   steal.then("stealconfig.js")
+
+  <% if (options.steal.map) { %>
+  .then(function()
+      {
+          var map = steal.extend(steal.config('map')['*'],
+                  <%= JSON.stringify(options.steal.map) %>
+          );
+          steal.config('map', {'*': map});
+       })
+  <% } %>
   <% with (scripts) { %>
   <% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
     .then("<%= fn.pathify(script) %>")
