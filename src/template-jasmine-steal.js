@@ -28,7 +28,9 @@ exports.process = function(grunt, task, context) {
         absBase = '/';
       }
 
-      return absBase + s.replace(stealRel, '').replace(baseRel, '').replace(supportRel, '/node_modules/');
+      var result = absBase + s.replace(stealRel, '').replace(baseRel, '').replace(supportRel, '/node_modules/');
+      console.log('pathify: '+s+' to '+result+ ' absBase: '+absBase+ ' stealRel: '+stealRel+' baseRel: '+baseRel+' stealRoot'+stealRoot);
+      return result;
     }
   };
 
