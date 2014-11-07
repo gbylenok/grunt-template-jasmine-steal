@@ -46,7 +46,7 @@
   <% scripts.specs.forEach(function(script, i){ %>
     .then("<%= fn.pathify(script) %>")
   <% }) %>
-  <% scripts.start.forEach(function(script, i){ %>
+  <% scripts.boot.forEach(function(script, i){ %>
     .then("<%= fn.pathify(script) %>")
   <% }) %>
 });
