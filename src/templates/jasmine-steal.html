@@ -36,7 +36,7 @@
   steal.one("done", function() {
   steal  
   <% with (scripts) { %>
-  <% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
+  <% [].concat(jasmine, boot, vendor, helpers).forEach(function(script){ %>
     .then("<%= fn.pathify(script) %>")
   <% }) %>
   <% }; %>
@@ -44,9 +44,6 @@
     .then("<%= fn.pathify(script) %>")
   <% }) %>
   <% scripts.specs.forEach(function(script, i){ %>
-    .then("<%= fn.pathify(script) %>")
-  <% }) %>
-  <% scripts.boot.forEach(function(script, i){ %>
     .then("<%= fn.pathify(script) %>")
   <% }) %>
 });
