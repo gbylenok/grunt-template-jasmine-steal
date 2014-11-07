@@ -46,6 +46,9 @@
   <% scripts.specs.forEach(function(script, i){ %>
     .then("<%= fn.pathify(script) %>")
   <% }) %>
+    .then(function() {
+       window.onload();
+    });
 });
     </script>
 </body>
